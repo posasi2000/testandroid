@@ -19,7 +19,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //컴포넌트위젯 연결 findViewById()
-
+        btn1 = findViewById(R.id.button1);
+        btn2 = findViewById(R.id.button2);
+        btn3 = findViewById(R.id.button3);
+        btn4 = findViewById(R.id.button4);
+        btn5 = findViewById(R.id.button5);
+        tv = findViewById(R.id.textview1) ;
+        iv = findViewById(R.id.imageview1);
 
         //버튼이벤트처리 btn1.setOnClickListener(new View.OnClickListener(onClick(){}));
         btn1.setOnClickListener(new View.OnClickListener() {
