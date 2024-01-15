@@ -6,15 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     Button btn1, btn2, btn3, btn4, btn5;
     ImageView iv ;
     TextView tv ;
-    int[] images = {  R.drawable.cake1, R.drawable.cake2, R.drawable.cake3} ;
+    int[] images = {
+            R.drawable.cake1,  R.drawable.cake2, R.drawable.cake3,
+            R.drawable.pizza1,  R.drawable.pizza2,  R.drawable.pizza3
+    } ;
     int cnt = 0 ;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -52,12 +56,18 @@ public class MainActivity extends Activity {
         btn4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼4 + close ");
+                //Toast위젯은 팝업(Activity대상, 안내문, 시간) show()
+                //Toast tt = Toast.makeText(1,2,3)
+                Toast tt = Toast.makeText(getApplicationContext(), "프로그램닫기", Toast.LENGTH_LONG);
+                tt.show();
+                finish(); //프로그램닫기
             }
         });
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼4 + 배열응용 ");
+                iv.setImageResource(images[cnt++%6]);
             }
         });
     }//onCreae end
