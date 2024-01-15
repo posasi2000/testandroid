@@ -67,7 +67,9 @@ public class MainActivity extends Activity {
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼4 + 배열응용 ");
-                iv.setImageResource(images[cnt++%6]);
+                iv.setImageResource(images[cnt]);
+                cnt++;
+                if(cnt==6){ cnt=0;}
             }
         });
     }//onCreae end
