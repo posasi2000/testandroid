@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,8 @@ public class MainActivity extends Activity {
     ImageView iv ;
     TextView tv ;
     int[] images = {
-            R.drawable.cake1,  R.drawable.cake2, R.drawable.cake3,
-            R.drawable.pizza1,  R.drawable.pizza2,  R.drawable.pizza3
+            R.drawable.avocado,  R.drawable.apple, R.drawable.lemon,
+            R.drawable.melon,  R.drawable.corgi,  R.drawable.aaa
     } ;
     int cnt = 0 ;
 
@@ -34,8 +35,9 @@ public class MainActivity extends Activity {
         //버튼이벤트처리 btn1.setOnClickListener(new View.OnClickListener(onClick(){}));
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                tv.setText("버튼1 + btn 이미지 ");
-                iv.setImageResource(R.drawable.bt);
+                tv.setText("버튼1 + 기린 이미지 ");
+                //정석권장 iv.setImageResource(R.drawable.bt);
+                iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bc));
             }
         });
 
@@ -66,12 +68,25 @@ public class MainActivity extends Activity {
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                tv.setText("버튼4 + 배열응용 ");
+                tv.setText("setOnClickListener ~~~ ");
                 iv.setImageResource(images[cnt]);
                 cnt++;
                 if(cnt==6){ cnt=0;}
             }
         });
+
+
+        //setOnTouch리스너대신 위에 있는 setOnClick리스너권장
+//        btn5.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                tv.setText("~~~ setOnTouchListener");
+//                iv.setImageResource(images[cnt]);
+//                cnt++;
+//                if(cnt==6){ cnt=0;}
+//                return false;
+//            }
+//        });
     }//onCreae end
 }//class END
 
