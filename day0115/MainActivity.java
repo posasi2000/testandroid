@@ -31,18 +31,21 @@ public class MainActivity extends Activity {
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼1 + btn 이미지 ");
+                iv.setImageResource(R.drawable.bt);
             }
         });
 
         btn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼2 + time이미지 ");
+                iv.setImageResource(R.drawable.d22);
             }
         });
 
         btn3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 tv.setText("버튼3 + house 이미지 ");
+                iv.setImageResource(R.drawable.d33);
             }
         });
 
