@@ -21,13 +21,18 @@ public class MainActivity extends Activity {
         listview = findViewById(R.id.listview1);
 
         //멤버객체화 movieDataList = new ArrayList<SampleData>(); 객체화후 add(1,2,3)
-        movieDataList.add(new SampleData(R.drawable.d11, "녹차", "누구나 주문가능"));
-        movieDataList.add(new SampleData(R.drawable.d22, "모래시계", "누구나 주문가능"));
-        movieDataList.add(new SampleData(R.drawable.d33, "하우스", "누구나 주문가능"));
+        movieDataList.add(new SampleData(R.drawable.d11, " 녹차", "  주문가능"));
+        movieDataList.add(new SampleData(R.drawable.d22, " 모래시계", "  주문가능"));
+        movieDataList.add(new SampleData(R.drawable.d33, " 하우스", "  주문가능"));
+
+        movieDataList.add(new SampleData(R.drawable.pizza1, " 초코케익", "  주문가능"));
+        movieDataList.add(new SampleData(R.drawable.pizza2, " 블루케익", "  주문가능"));
+        movieDataList.add(new SampleData(R.drawable.pizza3, " 미니케익", "  주문가능"));
+
         android.util.Log.i( "ArrayList추가데이터 확인",  movieDataList.toString());
         System.out.println("ArrayList추가데이터 확인 " + movieDataList.toString());
 
-        SKUAdapter myAdapter1 =  new SKUAdapter(this, movieDataList);
+        SKUAdapter myAdapter1 =  new SKUAdapter(this, movieDataList); //BBB.java=SKUAdapter.java
         listview.setAdapter(myAdapter1);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -35,9 +40,9 @@ public class MainActivity extends Activity {
             }
         });
 
-    }//end
+    }//onCreat함수메소드 end
 
-}//class END
+}//MainActivity class END
 
 
 
