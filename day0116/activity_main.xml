@@ -9,54 +9,25 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textview1"
+        android:text="최신영화,배민,요기요"
+        android:textSize="16pt"
+        android:background="#FFFF00"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="TextView "
-        android:background="#FFFF00"/>
+    />
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button1"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bts"	/>
-        <Button
-            android:id="@+id/button2"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="time"	/>
-        <Button
-            android:id="@+id/button3"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="집" />
-        <Button
-            android:id="@+id/button4"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="close" />
-        <Button
-            android:id="@+id/button5"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="img" />
-    </LinearLayout>
+    />
 
     <ImageView
-        android:id="@+id/imageview1"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="250dp"
+        android:src="@drawable/corgi"
         android:scaleType="fitXY"
-        android:src="@drawable/a1"
-        />
-</LinearLayout>
+    />
+
+</LinearLayout >
