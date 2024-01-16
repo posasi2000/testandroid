@@ -11,7 +11,7 @@
     <TextView
         android:text="최신영화,배민,요기요"
         android:textSize="16pt"
-        android:background="#FFFF00"
+        android:background="#FF00FF"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,11 +23,5 @@
         android:layout_height="wrap_content"
     />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/corgi"
-        android:scaleType="fitXY"
-    />
 
 </LinearLayout >

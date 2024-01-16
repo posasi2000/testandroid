@@ -61,7 +61,7 @@ java                       myAdapter1 = new SKUAdapter(1Context,2ArrayList<Sampl
 ㄴSKUAdapter.java    ===>  listview_custom.xml문서를 getView(1,2,3) { mLayoutInflater.inflate(R.layout.listview_custom, null); }
 ㄴSampleData.java
 
-layout
+layout->오른쪽버튼->new -> XML =>  Layout XML file
  ㄴactivity_main.xml    ===> <ListView id=listview1> 깡통틀 </ListView>
  ㄴlistview_custom.xml  ===> <iv><tv><tv>
  ㄴdialog.xml문서는 이미지클릭해서 팝업창으로 상세이미지 전화번호, 금액 출력 
