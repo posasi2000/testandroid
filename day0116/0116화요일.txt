@@ -6,16 +6,15 @@ https://github.com/posasi2000/sku.git
 
 웹프로젝트 제출기한 1월 15일 월요일 2시까지 웹미니플젝제출 
 ㄴ기준 제출날짜, 구현내용, 화면ui디자인, db설계
- 제출은 강사메일로 보내주세요 
+ 제출은 강사메일로 보내주세요 posasi2000@naver.com
  ppt문서 5개페이지 + pdf문서 5개페이지 포함
  (김영임)minibbs.zip
  (김영임)minibbs.war
  (김영임)web0108.zip = crud + 페이징 + 검색
  (김영임)web0108.ppt
  (김영임)web0108.pdf
- posasi2000@naver.com
 
-MyTwo플젝생성
+MyTwo플젝/Baemin플젝
  ㄴres/drawable폴더/이미지 복붙
  ㄴGradkes Scripts/2번째 build.gradle(Moudle: MyTwo:app)
    Toos메뉴 SDK Manager클릭해서 확인 33버젼 34버젼 35버젼 
@@ -49,6 +48,14 @@ dependencies {
 
 Baemin플젝은 제가 이미 어느정도 세팅(배포  build.gradel문서에서 compileSdk 33,  targetSdk 33수정)
 
+MyTwo플젝
+com.example.mytwo팩키지
+ ㄴMainActivity.java 상속 Activity화면틀제공 { public void onCreate(Bundle){ acivity_main.xml레이아웃 }
+ ㄴSampleData.java 순수자바 전역변수필드 + 생성자 + getter/setter
+ ㄴSKUAdpater.java 상속 BaseAdapter { 전역변수, 생성자, 메소드재정의}
+
+안드로이드에서 Adapter대량의 취급
+
 *------------------------------------------------------------------------------------------------
 *------------------------------------------------------------------------------------------------
 안드로이드 핵심4대요소 - Activity, Service(보이지않는백단), ContentProvider(cp데이터), BroadcastReceiver(br)
@@ -57,13 +64,16 @@ AAA.java, BBB.java 메소드함수의 리턴값,매개인자 변경해서
 class AAA {
    단독실행하려면 public static void main(String[] args){ }  
    public void send(){
-    BBB ob = new BBB(); 
+    BBB ob = new BBB(7,"명학","3"); 
     String uid="sky"; int pwd=1234;
     ob.data(uid,pwd); 메소드의 매개인자로 보내요
    } 
 }//AAA end
 
 class BBB { 
+   int poster; String movieNam; String grade;
+   public BBB(){  }
+   public BBB(int poster, String movieNam, String grade){  }
    public void data(String u, int p){출력,if제어문인증및,db저장,파일저장 } 
 }//BBB end
 
