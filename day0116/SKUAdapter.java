@@ -18,27 +18,28 @@ public class SKUAdapter extends BaseAdapter {
     public SKUAdapter(Context mContext, ArrayList<SampleData> sample) {
         this.mContext = mContext;
         this.sample = sample;
+        mLayoutInflater = LayoutInflater.from(mContext);
     }//end
 
     @Override
     public int getCount() {
-        return 0;
+        return sample.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public SampleData getItem(int i) {
+        return sample.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public View getView(int position, View convertview, ViewGroup viewGroup) {
         View view = mLayoutInflater.inflate(R.layout.listview_custom, null);
-        return null;
+        return view;
     }
 }//class END
 
