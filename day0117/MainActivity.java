@@ -99,18 +99,19 @@ public class MainActivity extends Activity {
             //여기까지 기술해야 애뮬레이터에 데이터표시
 
             //2024-01-17-수요일  왼쪽 메인이미지클릭시 상세정보출력
-            final  int pos = position;
+            final int pos = position;
             iv.setOnClickListener(new View.OnClickListener() {
-                @Override
                 public void onClick(View view) {
-                    View dialogView = (View)View.inflate(mContext.getApplicationContext(), R.layout.dialog, null);
-                    AlertDialog.Builder dlg  = new AlertDialog.Builder(mContext.getApplicationContext());
-                    ImageView ivPost = dialogView.findViewById(R.id.ivPoster);
-                    TextView  tvPost = dialogView.findViewById(R.id.tvpopup);
-                    ivPost.setImageResource(posterID[pos]);
-                    tvPost.setText(posterName[pos]);
+                    View dialogView = (View) View.inflate(MainActivity.this, R.layout.dialog, null);
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+                    ImageView ivPoster = dialogView.findViewById(R.id.ivPoster);
+                    TextView tvPoster = dialogView.findViewById(R.id.tvpopup);
+                    //참고기술안함Toast.makeText(getApplicationContext(), myAdapter1.getItem(i).getMovieName(), Toast.LENGTH_LONG).show();
+                    tvPoster.setText(posterName[pos] + " 데이터");
+                    ivPoster.setImageResource(posterID[pos]);
                     dlg.setTitle(posterName[pos]);
-                    dlg.setIcon(R.drawable.x);
+                    dlg.setIcon(R.drawable.x1);
+                    dlg.setView(dialogView);
                     dlg.setNegativeButton("닫기", null);
                     dlg.show();
                 }
@@ -119,7 +120,6 @@ public class MainActivity extends Activity {
             return view;
         }
     }//MyAapter class END
-
 
 }//MainActivity class END
 
