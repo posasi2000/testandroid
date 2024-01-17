@@ -1,5 +1,6 @@
 package com.example.test0107;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,9 @@ class KakaoAdapter extends BaseAdapter {
     int layout;
     LayoutInflater inf;
     ArrayList<Fruit> al;
+    Integer[ ] posterID = {R.drawable.melon, R.drawable.remon, R.drawable.jadoo,R.drawable.singer4 };
+    String[ ] posterName = {" 메론"," 레몬"," 자두"," 소냐"};
+
 
     public KakaoAdapter(Context ct) {
         this.ct = ct;
@@ -58,6 +62,7 @@ class KakaoAdapter extends BaseAdapter {
         tFrom.setText(f.from);
         iFrom.setImageResource(f.from_flag);
         tDate.setText(f.date);
+
         return cv;
     }//end
 }//KakaoAdpter클래스 end
