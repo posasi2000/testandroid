@@ -1,0 +1,850 @@
+웹&앱 백엔드 실무개발과정 
+성결대 web관련소스 깃 영임쌤
+https://github.com/posasi2000/snow.git
+https://github.com/posasi2000/sku.git
+
+
+웹프로젝트 제출기한 1월 15일 월요일 2시까지 웹미니플젝제출 
+ㄴ기준 제출날짜, 구현내용, 화면ui디자인, db설계
+ 제출은 강사메일로 보내주세요 
+ ppt문서 5개페이지 + pdf문서 5개페이지 포함
+ (김영임)minibbs.zip
+ (김영임)minibbs.war
+ (김영임)web0108.zip = crud + 페이징 + 검색
+ (김영임)web0108.ppt
+ (김영임)web0108.pdf
+
+MyTwo플젝/Baemin플젝주문/MyMovie영화포스트
+ ㄴArrayList<SampleData>, 생성자기능, 상속, 추상클래스 
+ ㄴres/drawable폴더/이미지 복붙
+ ㄴGradkes Scripts/2번째 build.gradle(Moudle: MyTwo:app)
+   Toos메뉴 SDK Manager클릭해서 확인 33버젼 34버젼 35버젼 
+ ㄴres/layout/activity_main.xml문서 <LinearLayout></LinearLayout>
+ ㄴMainActivity.java자바문서 class MainActivity extends Activity{ }
+ ㄴmanifests/AndroidManifest.xml
+ ㄴ위젯 ListView리스트목록 = 왼쪽 사진 + 오른쪽 큰제목,상세설명
+ ㄴ안드로이드 팝업창 Toast, AlertDialog
+
+
+에러에러에러해결1]
+ build.gradel문서에서 
+compileSdk 33,  targetSdk 33수정
+ 
+아래 dependencies수정
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment:2.4.1'
+    implementation 'androidx.navigation:navigation-ui:2.4.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    def lifecycle_version = "2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+}
+
+Baemin플젝은 제가 이미 어느정도 세팅(배포  build.gradel문서에서 compileSdk 33,  targetSdk 33수정)
+
+MyTwo플젝
+com.example.mytwo팩키지
+ ㄴMainActivity.java 상속 Activity화면틀제공 { public void onCreate(Bundle){ acivity_main.xml레이아웃 }
+ ㄴSampleData.java 순수자바 전역변수필드 + 생성자 + getter/setter
+ ㄴSKUAdpater.java 상속 BaseAdapter { 전역변수, 생성자, 메소드재정의}
+
+
+java                       myAdapter1 = new SKUAdapter(1Context,2ArrayList<SampldeData>)
+ㄴMainActivity.java  ===>  listview=findViewById(R.id.listview1); listview.setAdapter(myAdapter1)
+ㄴSKUAdapter.java    ===>  listview_custom.xml문서를 getView(1,2,3) { mLayoutInflater.inflate(R.layout.listview_custom, null); }
+ㄴSampleData.java
+
+layout
+ ㄴactivity_main.xml    ===> <ListView id=listview1> 깡통틀 </ListView>
+ ㄴlistview_custom.xml  ===> <iv><tv><tv>
+ ㄴdialog.xml문서는 이미지클릭해서 팝업창으로 상세이미지 전화번호, 금액 출력 
+
+
+java.lang.Object
+ android.content.Context
+  android.content.ContextWrapper
+    android.view.ContextThemeWrapper
+      android.app.Activity
+
+안드로이드에서 Adapter개념은 이미지+안내문2개 대량 6건만 취급
+
+
+*------------------------------------------------------------------------------------------------
+*------------------------------------------------------------------------------------------------
+안드로이드 핵심4대요소 - Activity, Service(보이지않는백단), ContentProvider(cp데이터), BroadcastReceiver(br)
+안드로이드 핵심4대요소 연결하는 클래스 Intent클래스=메신저역할 
+AAA.java, BBB.java 메소드함수의 리턴값,매개인자 변경해서
+class AAA {
+   단독실행하려면 public static void main(String[] args){ }  
+   public void send(){
+    BBB ob = new BBB(7,"명학","3"); 
+    String uid="sky"; int pwd=1234;
+    ob.data(uid,pwd); 메소드의 매개인자로 보내요
+   } 
+}//AAA end
+
+class BBB { 
+   int poster; String movieNam; String grade;
+   public BBB(){  }
+   public BBB(int poster, String movieNam, String grade){  }
+   public void data(String u, int p){출력,if제어문인증및,db저장,파일저장 } 
+}//BBB end
+
+
+웹프로그램 bbb.jsp문서에서 데이터입력후 데이터넘김 <form action="bbbCommit.jsp"> </form>
+웹프로그램 bbbCommit.jsp문서에서 데이터받음 request.getParameter("title");
+웹프로그램 bbbList.jsp문서에서 제목클릭해서 유일한값num필드데이터를 bbbDetail.jsp문서넘김
+ <a href="bbbDetail.jsp?idx=<%=Gnum%>"> [제목 <%=Gtitle%>] </a>
+
+그림ImageView, 안내문TextView,  입력EditView, onClick(View v){ }
+ListView리스트목록 = 왼쪽 사진 + 오른쪽 큰제목,상세설명
+안드로이드 Adapter개념이 여러데이터관리
+
+앱프로그램 안드로이드에서 데이터전달하고 싶어요
+ AAA.java=MainActivity.java문서에서 닉네임,비번입력해서 sky,1234데이터 
+ BBB.java=SubActivity.java문서 데이터를 넘기고 싶어요
+
+간단한 계산기를 table레이아웃설계
+
+
+
+
+
+
+
+앱프로그램 시작 1월 15일 월요일 (카톡목록, 요기요, 배민 음식주문)
+ㄴ기준 제출날짜, 구현내용, 화면ui디자인, 성능
+
+안드로이드 공유파일 주소
+맥사용자는 developer.android.com에서 프로그램다운로드
+https://drive.google.com/drive/folders/1b7J2cOmQXadYp6sbKCtG8jBmgnRTLRw7?usp=sharing
+
+
+
+https://developer.android.com/reference/android/app/Activity
+https://developer.android.com/reference/android/widget/Button
+
+자바기초, C기초, C++기초 
+ ㄴ시작함수 main() 메모리진입
+ ㄴ안드로이드는 onCreate(Bundle){메모리진입+R.layout.activity_main.xml}
+ ㄴ컴포넌트=위젯 widget팩키지 Button,ImageView,TextView,EditView,Toast
+  Toast.make~(Context, text, 시간).show()
+
+java.lang.Object
+ android.content.Context
+  android.content.ContextWrapper
+    android.view.ContextThemeWrapper
+      android.app.Activity
+
+
+
+파이썬 묵인함수 def main(): 
+
+안드로이드 플젝생성(java언어/코틀린언어)
+java팩키지
+ 시작자바문서 class MainActivity 상속 부모 { }
+ 
+res폴더에 아래작업을 하면 R.java문서 상수정수값으로 등록  
+ ㄴres폴더에 문서는 자바가 아닙니다 R.java=@
+ ㄴdrawable폴더 이미지그림  bt.png  ===> R.drawable.bt
+ ㄴlayout폴더 activity_main.xml  ===> R.layout.activity_main
+    버튼저장btnSave, 종료btnEnd   ===> R.id.btnSave
+    <Button id="@+id/btnSave/> ===> findViewByID(R.id.btnSave)    
+ ㄴvalues폴더 테마및컬러strings.xml 
+
+
+layout폴더
+ ㄴactivity_main.xml문서 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" tools:context=".MainActivity"
+
+<TextView
+    android:id="@+id/textview1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="TextView "
+    android:background="#FFFF00"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/button1"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bt"	/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="time"	/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="house" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="end" />
+    <Button
+        android:id="@+id/button5"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="img" />
+</LinearLayout>
+
+<ImageView
+    android:id="@+id/imageview1"
+    android:layout_width="match_parent"
+    android:layout_height="217dp"
+    android:scaleType="fitCenter"
+    android:src="@drawable/a1"
+    />
+</LinearLayout>
+
+
+
+
+
+
+
+*---------------------------------------------------------------------------------
+01-12-금요일
+ https://git-scm.com
+ 프로젝트 참고용 https://github.com/posasi2000/sku.git
+
+ git clone  https://github.com/posasi2000/sku.git
+ 
+ minibbs플젝 - 오라클사용
+ myproject새로생성
+ web0108플젝 - mysql 추가
+
+ 프로젝트 주제정하기-로그인,게시판,방명록,이미지게시판,todoList
+ 조원팀원구성(혼자, 조원)
+ 데이터베이스(mysql선택, oracle선택)
+ 게시판,방명록,로그인
+  ㄴ페이징,댓글....
+
+
+
+
+다시 기술...
+ login테이블( userid, pwd );
+ bbs테이블( );
+ bbsreply테이블( );
+
+ login테이블( userid, pwd );
+ board테이블( );
+ boardreply테이블( );
+
+ login테이블( userid, pwd );
+ guest테이블( );
+ guestreply테이블( );
+ 
+
+
+
+ ㄴ추가필드 name,email,hit
+ ㄴStatement ST개체를 ssi.jsp문서, PreparedStatement PST개체사용
+ ㄴbbs.jsp문서 입력란2개추가, bbsCommit.jsp문서 PST명령어를 적용
+ ㄴ목요일점심시간이후 bbs.jsp문서 새이름으로 저장  bbsCopy.jsp/bbsWrite.jsp문서
+
+ ㄴ자바스크립트 응용  <script> var 변수이름=값;  function game(){ } </script>
+   자바스크립트 구조 =DOM=돔 document object model=웹브라우저에서 제공되는 내장객체
+   ㄴwindow, document, location, history, Image, 
+    window.open("문서이름", "창제목", "옵션") ; book.jsp문서기술
+
+ id접근 document.getElementById("email_ch").innerHTML="<font style='font-size:12pt; color:red'>*sky@nate.com형식으로 입력하세요*</font>";
+ id접근 document.getElementById("juso2").~~~; 
+
+<form>
+   상세:<input type=text name="juso2"  id="juso2" value="성결관 303호"> <br>
+</form>
+
+
+ ㄴclass Board{ 전역변수,생성자, 메소드 } + jsp연결
+ ㄴoracle관련내용 풀소스배포 
+
+결론 
+명령어 Statement, PreparedStatement
+ST = CN.createStatement() ;
+PST = CN.prepareStatment("insert/update/delete/select~~"); 해석
+저장 ST.executeUpdate(msg) ;
+    PST.setInt(2, 값) 
+저장 PST.executeUpdate() ; //PST.executeUpdate(X비어있음);
+
+
+*---------------------------------------------------------------------------------
+test테이블삭제후 작성  name필드 varchar(30)  email필드 varchar(30), hit필드  int(3)  
+기존test테이블 alter명령어 추가 
+ test(num,title,price,wdate, name,email,hit)
+
+ ssi.jsp문서 전역변수  Gname,Gemail,Ghit 3개추가 
+ bbs.jsp문서 이름/메일입력란 추가
+ bbsCommit.jsp문서 insert ~~ 항목추가 
+ bbsList.jsp문서 name필드출력
+  
+기존test구조 
+mysql> alter table test  add( name varchar(30) not null);
+mysql> alter table test  add( email varchar(30) not null);
+mysql> alter table test  add( hit int(3) default 0);
+mysql> desc test ;
+mysql> system cls ;  화면 clear역할 
+
+mysql> drop table test ; 
+mysql> create table test ( 
+         num  int(4) not null  auto_increment primary key  ,          
+         title varchar(30) not null ,
+         price int not null ,
+         wdate  datetime  default now() ,
+         name varchar(30) not null ,
+         email varchar(30) not null ,
+         hit int(3) default 0
+      );
+mysql> commit ;
+mysql> desc test ;
+
+ insert into test(title,price,wdate,name,email) values('cake', 23, now(),'kim','aa@kt.com'); 
+ insert into test(title,price,wdate,name,email) values('pizza', 45, now(),'goo','bb@kt.com' ); 
+ select * from  test ;
+ commit ;
+
+
+
+
+전체출력 
+mysql> select num,title,price,wdate from  test ;
+mysql> select * from  test ;
+
+mysql> desc test ;
+mysql> alter table test  add( hit int  default 0 );
+mysql> commit ;
+mysql> desc test ;
+mysql> select * from  test ;
+mysql> alter table test  drop column hit ;
+mysql> commit ;
+mysql> select * from  test ;
+mysql> desc test ;
+
+
+
+
+
+
+
+*----------------------------------------------------------------------------------
+주는입장 bbsList.jsp문서에서 제목을 클릭하면 상세문서 bbsDetail.jsp이동
+ 노노<a href="bbsDetail.jsp?idx=Gnum"> <%= Gtitle %>  </a>
+ <a href="bbsDetail.jsp?idx=<%= Gnum %>"> <%= Gtitle %>  </a>
+
+받는입장 bbsDetail.jsp문서에서 idx값을 받아요
+ String data = request.getParameter("idx") ;
+ msg = "select * from test where num = " + data ;
+ System.out.println("상세 " + msg) ;
+
+bbsDetail.jsp문서 마지막문단 a태그의 수정,삭제
+ㄴ주문,댓글,답장,장바구니
+ㄴ수정 bbsUpdate.jsp => select ~ where 조회한결과 출력후 수정편집
+      ㄴbbsUpdateCommit.jsp  => update Table set title='수정' where 
+ㄴ삭제 bbsDelete.jsp => delete 데이터삭제후 bbsList.jsp이동
+
+
+show databases;
+create database board;
+show databases;
+use board;
+
+drop table test;
+create table test (
+    num int(4) not null  auto_increment primary key ,
+    title varchar(10) not null ,
+    price int not null,
+    wdate datetime  default now() 
+ );
+       
+ show tables ;
+ desc test ;
+ 
+  insert into  test(title, price) values('kim', 23) ;
+  insert into  test(title, price) values('lee', 34) ;
+  select * from test ;
+  commit ;
+
+
+
+*오라클설치후 콘솔창 
+//cmd입력후 콘솔창
+C:\Users\~~> path
+C:\Users\~~> cls
+C:\Users\~~> dir
+C:\Users\~~> cls
+
+[오라클포트, 톰캣포트 충돌발생 포트변경]
+윈도우시작 cmd
+C:\~~> sqlplus  system/1234
+SQL>  show user 
+SQL>  select dbms_xdb.getHttpPort() from dual; 
+SQL>  exec dbms_xdb.setHttpPort(9090);            
+SQL>  commit ;
+SQL>  select dbms_xdb.getHttpPort() from dual; 
+
+drop table test;
+create table test (
+    num number(4)  primary key ,
+    title varchar2(10) not null ,
+    price int not null,
+    wdate date 
+ );
+       
+ desc test ;
+ insert into  test(num, title, price, wdate) values(1100, 'kim', 23, sysdate ) ;
+ insert into  test(num, title, price, wdate) values(2200, 'lee', 78, sysdate ) ;
+ select * from test ;
+ commit ;
+
+
+
+
+index.jsp문서 자바스크립트에 3초후 bbsList.jsp문서기술 
+bbs.jsp -> DB없이 ssi.jsp연결없이 화면form태그 있음
+단독실행X bbsCommit.jsp -> request내장객체  드뎌 ssi.jsp연결 쿼리문insert ~~ 기술
+bbsList.jsp -> RS=ST.executeQuery("select ~~~") <%= 전역변수 %>
+단독실행X bbsDetail.jsp -> RS=ST.executeQuery("select ~ where num ~ ") <%= 전역변수 %>
+ ㄴ한건상세문서 <a href="~"> 삭제 </a>
+ ㄴ한건상세문서 <a href="~"> 수정 </a>
+단독실행X bbsUpdate.jsp -> select쿼리내용을 value="<%= Gtitle%> 
+단독실행X bbsUpdateCommit.jsp -> update set where 
+단독실행X bbsDelete.jsp -> delete ~ where 
+
+
+자바언어기반 jsp/서블릿/spring
+<%!   
+   //!!!!있어요 ssi.jsp문서에는 전역변수선언후 다른문서 bbsCommit.jsp문서사용
+   String title  ;    //접근지정자생략하면 자동으로 public 전역변수는 자동초기화
+   public int price;  //전역변수 자동초기화
+   out.println("제목 = " + title + "<br>" ); 
+   out.println("가격 = " + price + "<br>" ); 
+%>
+
+<% 
+   //자바언어기술 class없는상태, 메소드함수없는상태 기술 
+   String title = "눈사람" ; //지역변수는 값이 없는상태 연산및 출력하면 에러발생
+   int price = 2700 ;       //지역변수는 값이 없는상태 연산및 출력하면 에러발생
+   out.println("제목 = " + title + "<br>" ); 
+   out.println("가격 = " + price + "<br>" ); 
+%>
+	//bbsList.jsp문서 table태그 tr태그 <td> <%= Gtitle %> 
+	제목: <%= title %> <br>
+	가격: <%= price %> <br>
+
+
+//다시설명 1월10일 수요일
+자바언어기반 jsp
+<%!   
+   //ssi.jsp문서에는 전역변수선언후 다른문서 bbsList.jsp/bbsCommit.jsp문서사용
+   //!없으면 에러발생메세지 The local variable CN may not have been initialized
+   String title  ;    //접근지정자생략하면 자동으로 public 전역변수는 자동초기화
+   public int price;  //전역변수 자동초기화
+%>
+
+<% 
+   //자바언어기술 class없는상태, 메소드함수없는상태 기술 
+   String title = "눈사람" ; //지역변수는 값이 없는상태 연산및 출력하면 에러발생
+   out.println("제목 = " + title + "<br>" ); 
+    
+%>
+     //bbsList.jsp문서 table태그 tr태그 <td> <%= Gtitle %> 
+     제목: <%= title %> <br>
+     가격: <%= price %> <br>
+
+
+
+저장처리 - 파일, 데이터베이스 
+데이터베이스 
+ ㄴ입력 입력화면form + insert into 테이블 values( 'lee@kt.com' ,  now() )  
+ ㄴ전체출력 select num,title,price,wdate from test 
+ ㄴ한건상세내용 select ~~ where조건
+ ㄴ한건수정   select원하는 내껏가져오기 /update 테이블 set title='pizza' 
+ ㄴ한건삭제  delete from  테이블
+
+insert into test(title,price) values( 'bc', 20 ) ; 
+insert into test(title,price) values( 'kb', 30 ) ; 
+insert into test(title,price) values( 'ck', 40 ) ; 
+insert into test(title,price) values( 'sk', 50 ) ; 
+insert into test(title,price) values( 'sm', 60 ) ; 
+
+  num    title     price   wdate
+|   1 | cake   |    23 | 2024-01-09 15:25:08 |
+|   2 | hong   |    78 | 2024-01-09 15:30:11 |
+|   3 | blue   |    56 | 2024-01-09 15:30:11 |
+|   4 | aaa    |    31 | 2024-01-09 16:10:28 |
+|   5 | cherry |    71 | 2024-01-09 16:11:54 |
+|   6 | young  |    98 | 2024-01-09 16:13:44 |
+|   7 | bc     |    20 | 2024-01-10 11:18:53 |
+|   8 | kb     |    30 | 2024-01-10 11:18:53 |
+|   9 | ck     |    40 | 2024-01-10 11:18:53 |
+|  10 | sk     |    50 | 2024-01-10 11:18:53 |
+|  11 | sm     |    60 | 2024-01-10 11:18:54 |
+
+  mysql> select num, title, price , wdate  from test ;
+  mysql> select count(*)  from test ;
+  mysql> select *  from test ;
+  mysql> system cls ;
+  mysql> select *  from test  where title = "ck" ;
+  mysql> select *  from test  where title = 'ck' ; 정석
+  mysql> select *  from test  where title = 'CK' ;
+  mysql> select *  from test  where title like '%e%' ;
+  mysql> select *  from test  where title like '%c%' ;
+  mysql> select *  from test  where num = 7 ;
+
+bbsList.jsp문서를 새이름으로 저장 bbsDetail.jsp
+ 번호,제목,가격,날짜,~~~필드가 더 있으면 좋아요
+ <a href="bbsDetail.jsp"> 제목데이터 </a>
+ <a href="bbsDetail.jsp"> <%= Gtitle %>  </a>
+ <a href="bbsDetail.jsp?전역변수=num"> <%= Gtitle %>  </a>
+ <a href="bbsDetail.jsp?idx=Gnum"> <%= Gtitle %>  </a>
+ <a href="bbsDetail.jsp?idx=<%= Gnum%>"> <%= Gtitle %>  </a>
+
+ bbs제목을 클릭 상세내용 볼수 있죠 => bbsDetail.jsp 한건
+ 메일제목을 클릭 상세내용 볼수 있죠 => 답장
+ 상품제목을 클릭 상세내용 볼수 있죠 => 댓글
+ 상품그림을 클릭 상세내용 볼수 있죠 => 주문
+
+
+
+<% bbsList.jsp문서설명 
+//select~~조회 java+database=jdbc  
+ RS = ST.executeQuery("select ~~ ") ;
+ while(RS.next()==true) {
+    Gtitle=RS.getString("title"); 
+%>
+   <td> <%= Gtitle %> </td>
+
+<% } %>
+
+
+<% out()출력,  request값전달 %>
+웹서버tomcat설치하면 자동으로 제공되는 내장객체
+ㄴout,request,response,page,session,application
+out객체 웹화면출력
+request객체 값전달할때 문자열로 전달  7*500=3500  문자열은 형변환후 계산처리유리
+response객체 페이지이동 a태그역할
+page객체 최상단에 자동으로 표시  한글인코딩,자바언어연결
+
+
+웹문서 - 3대장인 (html, css, javascript)
+html는 태그위주 실습
+css 대상{ 여백,글꼴,외곽선,글꼴 }
+javascript는 react,vue,angular,node
+ ㄴ문서이동,null체크, 다음주소록 
+
+참고] 문서이동
+1) <a href="bbs.jsp"> [글쓰기]</a>
+2) <form action="bbsCommit.jsp"> input type=submit  </form>
+3) 자바스크립트 location.href="bbs.jsp"
+4) 아직 톰캣에서 제공되는 내장객체에 response.sendRedirect("~~.jsp") ; 
+
+https://www.w3schools.com/ 
+
+데이터베이스 설치 
+SQL쿼리문 - ddl,dml,dcl,tcl  l=language
+쿼리문이해후 bbsCommit.jsp문서 insert into values~~~
+쿼리문이해후 bbsList.jsp문서 select 필드1,~~ from 테이블명
+ 
+
+test6Table.jsp새로작성
+도표=table=표
+ <table  width=1000>
+   <table row> 가로행
+     <table header> 제목  </th>
+     <table data>  </td>  열컬럼 실제데이터
+   </tr>
+ </table>
+
+
+MySQL설치후 환경변수지정 
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+시스템 환경 변수 편집
+ㄴ3고급탭 환경변수(N)...클릭
+   시스템변수(s) path선택후 편집...
+   오른쪽상단 새로만들기 C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+1) cmd입력후 
+C:\Users\301-13> path
+C:\Users\301-13> cls
+C:\Users\301-13> 
+C:\Users\301-13> mysql -u root  -p
+ enter password: 1234 
+
+mysql> select  version() ;
++-----------+
+| version() |
++-----------+
+| 8.0.35    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select  now() ;
+mysql> select user() ;
+mysql> select database() ;
+mysql> show databases ;
+mysql> system cls ;
+mysql> create database board ;
+
+mysql> show databases ;
+mysql> use board ;
+mysql> show tables ;
+
+mysql> drop table test ;  처음에는 test테이블이 없어서 에러발생
+mysql> create table test ( 
+         num  int(4) not null  auto_increment primary key  ,          
+         title varchar(30) not null ,
+         price int not null ,
+         wdate  datetime  default now() 
+      );
+
+mysql> commit ;
+mysql> show tables ;
+mysql> desc test ;
+
+html언어 웹브라우저
+java class기반
+SQL-structured query language
+ ㄴDDL, DML, DCL, TCL
+DDL - create, drop, alter
+DML - insert into ~ , select from ~ , delete ~ where~, update set where~
+DCL - grant, revoke
+TCL - commit, rollback  
+
+test 4개필드 (num,title,price,wdate)
+신규등록 
+system cls ;
+select * from  test ;
+insert into test(title,price,wdate) values('cake', 23, now() ); 
+insert into test(title,price,wdate) values('hong', 78, now() ); 
+insert into test(title,price,wdate) values('blue', 56, now() ); 
+commit ;
+
+전체출력 
+select num,title,price,wdate from  test ;
+select * from  test ;
+
+mysql> desc test ;
+mysql> alter table test  add( hit int  default 0 );
+mysql> commit ;
+mysql> desc test ;
+mysql> select * from  test ;
+mysql> alter table test  drop column hit ;
+mysql> commit ;
+mysql> select * from  test ;
+mysql> desc test ;
+
+DDL-create,drop,alter
+
+
+웹서버,was설치하면 자동내장객체 제공
+ ㄴout,request,response,page,session,application
+out객체 웹화면출력
+request객체 값전달할때 문자열로 전달  7*500=3500  문자열은 형변환후 계산처리유리
+response객체 페이지이동 response.sendRedirect("bbsList.jsp") 
+page객체 맨윗줄에표시 import="java.sql.*"  한글인코딩,자바언어연결 
+
+	bbs.jsp입력화면 form 
+	bbsCommit.jsp 
+	 ㄴ저장insert~처리 db연결 ssi.jsp문서연결
+	 ㄴrequest값받기, 저장성공후 response객체문서이동 
+         ㄴ다른이름저장 bbsList.jsp
+	bbsList.jsp 전체출력처리 "select * from test" db연결 ssi.jsp문서연결 
+
+~~~.jsp문서는 기본이 html태그입니다
+<% 자바코드 String data="성결대"; out.println(data); %>
+<%! 자바코드 전역변수, 함수선언 %>
+<%= data %>
+
+
+
+프로그램설치 java,eclipse,tomcat
+html기본태그연습
+<% out()출력,  request값전달 %>
+웹서버tomcat설치하면 자동으로 제공되는 내장객체
+ㄴout,request,response,page,session,application
+out객체 웹화면출력
+request객체 값전달할때 문자열로 전달  7*500=3500  문자열은 형변환후 계산처리유리
+response객체 페이지이동 a태그역할
+page객체 최상단에 자동으로 표시  한글인코딩,자바언어연결
+
+
+
+
+
+문제1] 자바 형변환casting=타입변환
+	int  total = 0 ;
+	double avg = 78.9 ;
+	String message = "1200" ;
+
+	total = (int)avg ; 에러해결
+	int a =  (int)message ; 에러발생 
+	int b =  Integer.parseInt(message) ; 에러해결
+
+webapp기본접근가상이름
+ㄴssi.jsp = server side include  
+ㄴcsi.jps = client side include
+
+
+
+성결대 web관련소스 깃 영임쌤
+https://github.com/posasi2000/snow.git
+
+
+웹과정필요한 선수과목=필수과목 
+ ㄴhtml,css,javascript,java
+ ㄴ데이터베이스=database=db(오라클oracle,mysql,mariaDB,몽고)
+ ㄴ자바언어 java기초
+
+
+성결대 web관련소스 깃 영임쌤
+https://github.com/posasi2000/snow.git
+
+
+html태그 
+ div컨테이너역할
+ h1 ~ h5 제목역할 자동라인개행+짙하게
+ a href 앵커는 원하는 문서및 페이지이동후 정착
+ br, p  라인개행
+ image source = img src
+ b,i,u,del,ins글자스타일적용
+ <form> 입력및선택 </form>
+ 
+자바java는 클래스 생성 = 전역변수+생성자+함수
+public class Game {
+   private int Gtotal; 전역변수=필드=멤버변수
+   private  String Gname;
+
+  public Game(){ 기본생성자 }  
+  public Game(String kind){ 매개인자생성자 }
+
+  public int getCount(){ return 78; }
+  public boolean  team(){ ~~~ return true; }
+  public void display(){ 함수중복=overLoading  } 
+  public void display(int a, double b){ 함수중복=overLoading } 
+}
+
+구구단출력 for반복문, 웹화면출력  
+jsp문서 기본인식양식 tag인식  <% class구조없이 메소드구조없이 자바코드기술  %>
+	<%
+	  웹화면출력 out.println();		
+	  값전달 request내장개체.getParamater("title")
+
+	%>
+
+jdk프로그램설치 
+톰캣설치
+이클립스설치 = 톰캣연결 + 웹프로그램 생성 
+
+ㄴ웹과정프로그램 
+   ㄴjsp,asp,php,django,flask
+   ㄴ자바기본jsp/mvc2서블릿/springsts/springboot
+ㄴ앱과정프로그램
+   ㄴ안드로이드,코틀린,flutter=플러터,swift=스위프트
+
+jsp = java + server + page
+앱 안드로이드 developer.android.com
+
+
+ 웹브라우저 
+  vsCode다운로드 입력후 
+ https://code.visualstudio.com/download
+ VSCodeUserSetup-x64-1.85.1.exe파일 
+
+
+수업에 필요한 jdk설치해야 jsp/spring/안드로이드 
+jdk-17_windows-x64_bin.exe
+설치경로 C:\Program Files\Java\jdk-17\bin
+
+시스템 환경 변수 편집
+ㄴ3고급탭 환경변수(N)...클릭
+   시스템변수(s) path선택후 편집...
+   오른쪽상단 새로만들기  
+
+콘솔cmd = 윈도우 + R
+C:\Users\301-13> path
+C:\Users\301-13> 
+C:\Users\301-13> javac.exe
+C:\Users\301-13> jar.exe
+C:\Users\301-13>
+C:\Users\301-13> java -version 
+
+소스작성 편집기 설치 이클립스
+ https://www.eclipse.org
+ https://www.eclipse.org/downloads/
+ 설치 eclipse-jee-2023-12-R-win32-x86_64.zip->오른쪽버튼=>여기에 풀기
+ eclipse 폴더생성
+
+서버역할(엔진x,iis,톰캣=was,티맥스제우스)
+ https://tomcat.apache.org/
+ https://tomcat.apache.org/download-10.cgi 
+ 화면중앙 Binary Distributions(Core) -> 64-bit Windows Zip압축파일 다운로드 
+설치 apache-tomcat-9.0.84-windows-x64.zip->오른쪽버튼=>여기에 풀기
+apache-tomcat-9.0.84 폴더생성
+
+
+
+2교시 11시 40분까지 완료 
+이미 jdk설치 경로는 C:\Program Files\Java\jdk-17\bin 
+
+cookWeb원하는작업폴더 
+ ㄴworkspace 폴더생성
+ ㄴeclipse 폴더생성
+  ㄴ보라색아이콘 eclipse.exe파일 바로가기 생성
+ ㄴapache-tomcat-9.0.84 폴더생성
+
+이클립스 File메뉴 -> new -> Project...
+ Java Project : day0108
+ 
+day0108
+ ㄴsrc=>오른쪽버튼-> new... class
+   클래스 : Test
+   class Test {자바기초진입 처리함수 main()}
+
+web수업및프로젝트 관리하는 환경설정
+이클립스편집기 보이는 상태 
+
+웹브라우저 언어 
+WebBrowser language = html대소문자구별없음, <태그tag> 
+<html>
+ <head> <title>창제목</title>  </head>
+ <body>
+    test.jsp문서 ->복사후 webapp선택후 붙여넣기
+     ㄴtest3.jsp
+ </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

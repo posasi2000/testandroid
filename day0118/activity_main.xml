@@ -49,21 +49,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFF00"
-        android:text="출력"
+        android:text="컬러출력"
         android:textAlignment="center"
         android:textSize="15pt" />
     <!-- 가독성을 위한 텀  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20pt"
-            android:text=" " />
-    </LinearLayout>
-
 
     <RadioGroup
         android:id="@+id/rdGroup"
@@ -94,17 +83,6 @@
         android:textAlignment="center"
         android:textSize="15pt" />
 
-    <!-- 가독성을 위한 텀  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20pt"
-            android:text=" " />
-    </LinearLayout>
     <ToggleButton
         android:id="@+id/toggleBtn1"
         android:layout_width="match_parent"
@@ -113,13 +91,24 @@
         android:textOff="한글변환"
         android:textSize="14pt"
         />
-    <TextView
-        android:id="@+id/tv3"
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFF00"
-        android:text="한글/영문 출력"
-        android:textAlignment="center"
-        android:textSize="15pt" />
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FF00FF"
+            android:text="제목입력: "
+            android:textAlignment="center"
+            android:textSize="15pt" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 
 </LinearLayout>
