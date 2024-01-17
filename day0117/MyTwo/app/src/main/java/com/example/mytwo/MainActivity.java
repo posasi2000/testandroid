@@ -106,8 +106,9 @@ public class MainActivity extends Activity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                     ImageView ivPoster = dialogView.findViewById(R.id.ivPoster);
                     TextView tvPoster = dialogView.findViewById(R.id.tvpopup);
-                    //참고기술안함Toast.makeText(getApplicationContext(), myAdapter1.getItem(i).getMovieName(), Toast.LENGTH_LONG).show();
-                    tvPoster.setText(posterName[pos] + " 데이터");
+
+                    tvPoster.setText(posterName[pos] + " 키워드 검색태그");
+
                     ivPoster.setImageResource(posterID[pos]);
                     dlg.setTitle(posterName[pos]);
                     dlg.setIcon(R.drawable.x1);
