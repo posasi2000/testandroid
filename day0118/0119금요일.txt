@@ -29,7 +29,7 @@ class BBB 상속 Activity{
 }//BBB end
 
 manifests
-ㄴAndroidManifest.xml문서 
+ㄴAndroidManifest.xml문서  ===> .AAA 문서 시작문서로 지정
 
 
 
