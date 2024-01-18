@@ -65,7 +65,18 @@ activity_calculator.xml ===>계산기 LL-LinearLayout
 String jumin = "840730-1875319";
                         
 //문제1 성별이 남자/여자인지  당신은 여자입니다 (1/3남자  2/4여자)
-//문제2 07월30일 생일이네요  
+ char gender = jumin.charAt(7);
+ if (gender=='1' || gender=='3'){ 남자 }
+ else if (gender=='2' || gender=='4'){ 여자 }
+ else { 주번 성별 표시가 틀렸습니다 }       
+
+//문제2 당신의 07월30일 생일이네요    
+ String month = jumin.substring(2,4) ;
+ String day = jumin.substring(4,6) ;
+ System.out.println(month+"월 " + day+"일 생일이네요") ;
+
+//자바 생일, 나이 계산, 입력란, 문자열함수응용
+//참고사이트 https://blog.naver.com/whj6973_m/221007873658
 //문제3 84추출 + 1900 = 1984 
   2024-1984 = 40 
 
