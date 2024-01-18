@@ -88,11 +88,32 @@ public class Calculator extends Activity {
                 value1 = Float.parseFloat(editText.getText().toString());
                 editText.append("+");
                 break;
+            case R.id.btnPoint:
+                editText.append(".");
+                break;
         }//switch end
     }//end
 
     public void equal(View vw){
-
+        //숫자 연산자 숫자
+        String[] operator = {"+", "-", "X", "/"};
+        String my = editText.getText().toString();
+        int idx = 0 ;
+        String op = "" ;
+        for( String i: operator){
+            idx = my.indexOf(i);
+            if(idx != -1){ break;}
+        }
+        op = my.substring(idx, idx+1);
+        value2 = Float.parseFloat(my.substring(idx+1));  // 78x2300
+        textView.setText(my);
+        cal(op);
     }//end
 
-}//class END
+}//Calculator class END
+
+
+
+
+
+
