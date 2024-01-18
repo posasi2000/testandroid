@@ -66,12 +66,11 @@ public class Calculator extends Activity {
                 editText.setText(data.substring(0, data.length()-1));
                 break;
             case R.id.btnWhole:
-                //입력값을 가져와서 0크면 +, 0적으면 -
+                //그냥 숫자일때 버튼누르면 -숫자
                 String my = editText.getText().toString();
-                value1 = Float.parseFloat(editText.getText().toString());
-                if(value1>0){
-                    editText.setText("+"+value1);
-                }else if(value1<0){ editText.setText("-"+value1);}
+                if(my.charAt(0)=='+'){editText.setText("-"+my.substring(1,my.length()));}
+                else if(my.charAt(0)=='-'){editText.setText("+"+my.substring(1,my.length())); }
+                else{editText.setText("-"+ editText.getText().toString()); }
                 break;
             case R.id.btnDiv:
                 value1 = Float.parseFloat(editText.getText().toString());
