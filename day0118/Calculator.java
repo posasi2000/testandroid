@@ -9,10 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class Calculator extends Activity {
-    TextView tv1 ;
-    EditText et1 ;
-    Button bt1 ;
-
     EditText editText ;
     TextView textView ;
     String rule= "";
@@ -23,8 +19,8 @@ public class Calculator extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-        editText = findViewById(R.id.edit); //숫자 7~0, 수식 / X - +
-        textView = findViewById(R.id.view);
+        editText = findViewById(R.id.edittext1); //숫자 7~0, 수식 / X - +
+        textView = findViewById(R.id.textview1);
 
         //initialize()메소드호출
         initialize();
@@ -40,10 +36,24 @@ public class Calculator extends Activity {
         value2 = 0;
     }//end
 
-    public  void cal(String op){
+    public  void mycal(String op){
+        Float ret = 0f;
         switch (op){
-
+            case "+":
+                ret = value1+value2;
+                break;
+            case "-":
+                ret = value1-value2;
+                break;
+            case "X":
+                ret = value1*value2;
+                break;
+            case "/":
+                if(value2 != 0) { ret = value1 / value2;}
+                else{ editText.setText("0으로 나눌수 없습니다");}
+                break;
         }//switch end
+        editText.setText(String.valueOf(ret));
     }//end
 
     public void num(View vw){
@@ -107,7 +117,7 @@ public class Calculator extends Activity {
         op = my.substring(idx, idx+1);
         value2 = Float.parseFloat(my.substring(idx+1));  // 78x2300
         textView.setText(my);
-        cal(op);
+        mycal(op); //실제계산
     }//end
 
 }//Calculator class END
