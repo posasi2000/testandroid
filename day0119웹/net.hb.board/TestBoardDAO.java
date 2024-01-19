@@ -43,7 +43,12 @@ public class TestBoardDAO {
 	    PST.setString(3, vo.getName());
 	    PST.setString(4, vo.getEmail());
 	    PST.executeUpdate(); //진짜저장 
+	    System.out.println("1-19-금요일 자바문서에서 test저장 성공");
 	 }catch(Exception e){System.out.println("test저장실패"); }   
    }//end
 }//class END
+
+
+
+
 
