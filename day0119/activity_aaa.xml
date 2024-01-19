@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AAA">
+
+    <Button
+        android:id="@+id/mybutton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="데이터넘기기"
+        android:onClick="handleClick"
+        android:textSize="24dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/hydran"
+        android:scaleType="fitXY" />
+</LinearLayout>
